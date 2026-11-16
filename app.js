@@ -172,7 +172,67 @@ function stepCaseModal(direction){
   renderCaseModal();
 }
 
+async function renderMiniProduct(){
+  const holder = document.getElementById('miniArticle');
+  if (!holder) return;
+
+  try {
+    const response = await fetch('./mini-product.txt', { cache: 'no-cache' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const text = await response.text();
+    holder.innerHTML = miniTextToHtml(text);
+  } catch (error) {
+    holder.innerHTML = '<h2>FITNESS KAMA 🫦🤍</h2><p class="muted">Не удалось загрузить программу.</p>';
+  }
+}
+
+function miniTextToHtml(text){
+  const lines = String(text).split(/\r?\n/);
+  let html = '<h2>FITNESS KAMA 🫦🤍</h2>';
+  let listOpen = false;
+  const closeList = () => {
+    if (listOpen) {
+      html += '</ul>';
+      listOpen = false;
+    }
+  };
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line || /\.(jpe?g|png|webp)$/i.test(line)) continue;
+
+    if (line.startsWith('- ')) {
+      if (!listOpen) {
+        html += '<ul>';
+        listOpen = true;
+      }
+      html += `<li>${escapeHtml(line.slice(2))}</li>`;
+      continue;
+    }
+
+    closeList();
+
+    if (line.startsWith('> ')) {
+      html += `<blockquote>${escapeHtml(line.slice(2))}</blockquote>`;
+    } else if (/^\d\s*ЗАНЯТИЕ/i.test(line) || /^(ПРОГРАММА|БОНУСЫ)/.test(line) || /ТАРИФ/.test(line)) {
+      html += `<h3>${escapeHtml(line)}</h3>`;
+    } else if (/^(Стоимость|Свободно|Рекомендую|Все занятия|❗️)/.test(line)) {
+      html += `<p class="mini-note">${escapeHtml(line)}</p>`;
+    } else {
+      html += `<p>${escapeHtml(line)}</p>`;
+    }
+  }
+
+  closeList();
+  return html;
+}
+
 document.addEventListener('click', (e) => {
+  if (e.target.closest('[data-pay]')) {
+    e.preventDefault();
+    return;
+  }
+
   const filter = e.target.closest('[data-case-filter]');
   if (filter) {
     activeCaseFilter = filter.dataset.caseFilter;
@@ -233,6 +293,7 @@ document.addEventListener('keydown', (e) => {
 
 renderCaseFilters();
 renderCases();
+renderMiniProduct();
 
 if (tg) {
   tg.ready();
