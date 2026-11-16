@@ -33,6 +33,16 @@ body{
   height: auto;
   display: block;
 }
+.hero-subtitle{
+  margin: 14px auto 0;
+  max-width: 330px;
+  text-align: center;
+  color: #6f4850;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+}
 #home .menu{
   margin-top: 24px;
   gap: 16px;
