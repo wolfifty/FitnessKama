@@ -34,6 +34,12 @@ const CASES = [
   { title: 'Анастасия: после родов', tags: ['postpartum', 'reviews'], images: ['case-23-anastasia-postpartum.webp'] }
 ];
 
+const MINI_IMAGES = {
+  'IMG_1621.jpeg': 'https://www.notion.so/image/attachment%3Aed7c1e15-ae04-4aa5-b62e-3d27755f6d3d%3AIMG_1621.jpeg?table=block&id=3c30fab9-991e-80cd-af47-eecc30a61862&spaceId=086d1b99-8c2b-452d-854f-769c39194a8a&width=800&cache=v2',
+  'IMG_1620.jpeg': 'https://www.notion.so/image/attachment%3A99d322a3-621d-41e6-92c3-be73a46d08d8%3AIMG_1620.jpeg?table=block&id=3c30fab9-991e-800d-a983-d1b4d735d99f&spaceId=086d1b99-8c2b-452d-854f-769c39194a8a&width=1200&cache=v2',
+  'IMG_1617.jpeg': 'https://www.notion.so/image/attachment%3Aef2606ae-9577-4268-a115-65d4dc0c6ed0%3AIMG_1617.jpeg?table=block&id=3c30fab9-991e-80e0-89ac-dbbd4c70b9bf&spaceId=086d1b99-8c2b-452d-854f-769c39194a8a&width=1200&cache=v2'
+};
+
 let activeCaseFilter = 'all';
 let modalCaseIndex = 0;
 let modalImageIndex = 0;
@@ -199,7 +205,14 @@ function miniTextToHtml(text){
 
   for (const rawLine of lines) {
     const line = rawLine.trim();
-    if (!line || /\.(jpe?g|png|webp)$/i.test(line)) continue;
+    if (!line) continue;
+
+    if (/\.(jpe?g|png|webp)$/i.test(line)) {
+      closeList();
+      const src = MINI_IMAGES[line];
+      if (src) html += `<img class="mini-image" src="${src}" alt="" loading="lazy" decoding="async">`;
+      continue;
+    }
 
     if (line.startsWith('- ')) {
       if (!listOpen) {
