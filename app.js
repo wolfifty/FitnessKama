@@ -40,6 +40,8 @@ const MINI_IMAGES = {
   'IMG_1617.jpeg': 'https://www.notion.so/image/attachment%3Aef2606ae-9577-4268-a115-65d4dc0c6ed0%3AIMG_1617.jpeg?table=block&id=3c30fab9-991e-80e0-89ac-dbbd4c70b9bf&spaceId=086d1b99-8c2b-452d-854f-769c39194a8a&width=1200&cache=v2'
 };
 
+const HEART = '<span class="heart">♥︎</span>';
+
 let activeCaseFilter = 'all';
 let modalCaseIndex = 0;
 let modalImageIndex = 0;
@@ -60,6 +62,10 @@ function escapeHtml(value){
     "'": '&#39;',
     '"': '&quot;'
   }[char]));
+}
+
+function fmt(value){
+  return escapeHtml(value).replaceAll('🩷', HEART);
 }
 
 function caseSrc(name){
@@ -220,20 +226,20 @@ function miniTextToHtml(text){
         html += '<ul>';
         listOpen = true;
       }
-      html += `<li>${escapeHtml(line.slice(2))}</li>`;
+      html += `<li>${fmt(line.slice(2))}</li>`;
       continue;
     }
 
     closeList();
 
     if (line.startsWith('> ')) {
-      html += `<blockquote>${escapeHtml(line.slice(2))}</blockquote>`;
+      html += `<blockquote>${fmt(line.slice(2))}</blockquote>`;
     } else if (/^\d\s*ЗАНЯТИЕ/i.test(line) || /^(ПРОГРАММА|БОНУСЫ)/.test(line) || /ТАРИФ/.test(line)) {
-      html += `<h3>${escapeHtml(line)}</h3>`;
+      html += `<h3>${fmt(line)}</h3>`;
     } else if (/^(Стоимость|Свободно|Рекомендую|Все занятия|❗️)/.test(line)) {
-      html += `<p class="mini-note">${escapeHtml(line)}</p>`;
+      html += `<p class="mini-note">${fmt(line)}</p>`;
     } else {
-      html += `<p>${escapeHtml(line)}</p>`;
+      html += `<p>${fmt(line)}</p>`;
     }
   }
 
