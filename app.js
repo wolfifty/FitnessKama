@@ -46,6 +46,7 @@ let modalImageIndex = 0;
 
 function show(id){
   closeCaseModal();
+  document.querySelectorAll('.lesson-video').forEach(video => video.pause());
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(id)?.classList.add('active');
   window.scrollTo(0, 0);
@@ -240,9 +241,18 @@ function miniTextToHtml(text){
   return html;
 }
 
+function initLessonVideos(){
+  document.querySelectorAll('.lesson-video').forEach((video) => {
+    video.addEventListener('error', () => {
+      video.closest('.lesson-card')?.classList.add('is-empty');
+    });
+  });
+}
+
 document.addEventListener('click', (e) => {
   if (e.target.closest('[data-pay]')) {
     e.preventDefault();
+    show('materials');
     return;
   }
 
@@ -275,9 +285,14 @@ document.addEventListener('click', (e) => {
     return;
   }
 
+  const back = e.target.closest('[data-back]');
+  if (back) {
+    show(back.dataset.back || 'home');
+    return;
+  }
+
   const go = e.target.closest('[data-go]')?.dataset.go;
   if (go) show(go);
-  if (e.target.closest('[data-back]')) show('home');
 });
 
 document.addEventListener('keydown', (e) => {
@@ -307,6 +322,7 @@ document.addEventListener('keydown', (e) => {
 renderCaseFilters();
 renderCases();
 renderMiniProduct();
+initLessonVideos();
 
 if (tg) {
   tg.ready();
