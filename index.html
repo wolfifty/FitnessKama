@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Fitness Kama — Mini App</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div class="app">
+
+    <!-- Титульная -->
+    <section id="home" class="page active">
+      <div class="title-plate">
+        <img src="./assets/plaska-title.png" alt="Fitness Kama" />
+      </div>
+
+      <div class="menu">
+        <button class="img-btn" data-go="about" aria-label="Обо мне">
+          <img src="./assets/btn-about.png" alt="" />
+        </button>
+
+        <button class="img-btn" data-go="path" aria-label="Мой путь">
+          <img src="./assets/btn-path.png" alt="" />
+        </button>
+
+        <button class="img-btn" data-go="cases" aria-label="Кейсы">
+          <img src="./assets/btn-cases.png" alt="" />
+        </button>
+
+        <button class="img-btn" data-go="mini" aria-label="Мини продукт">
+          <img src="./assets/btn-mini.png" alt="" />
+        </button>
+
+        <button class="img-btn wide" data-go="consult" aria-label="Консультация">
+          <img src="./assets/btn-consult.png" alt="" />
+        </button>
+      </div>
+    </section>
+
+    <!-- Обо мне -->
+    <section id="about" class="page">
+      <div class="title-plate small">
+        <img src="./assets/plaska-title.png" alt="Fitness Kama" />
+      </div>
+      <div class="content-card">
+        <h2>Обо мне</h2>
+        <p class="muted">Здесь будет текст (статья) и иллюстрации.</p>
+      </div>
+      <button class="btn back" data-back>Назад</button>
+    </section>
+
+    <!-- Мой путь -->
+    <section id="path" class="page">
+      <div class="title-plate small">
+        <img src="./assets/plaska-title.png" alt="Fitness Kama" />
+      </div>
+      <div class="content-card">
+        <h2>Мой путь</h2>
+        <p class="muted">Здесь будет текст (статья) и иллюстрации.</p>
+      </div>
+      <button class="btn back" data-back>Назад</button>
+    </section>
+
+    <!-- Кейсы -->
+    <section id="cases" class="page">
+      <div class="title-plate small">
+        <img src="./assets/plaska-title.png" alt="Fitness Kama" />
+      </div>
+      <div class="content-card">
+        <h2>Кейсы</h2>
+        <p class="muted">Здесь будет текст/кейсы и иллюстрации.</p>
+      </div>
+      <button class="btn back" data-back>Назад</button>
+    </section>
+
+    <!-- Мини продукт -->
+    <section id="mini" class="page">
+      <div class="title-plate small">
+        <img src="./assets/plaska-title.png" alt="Fitness Kama" />
+      </div>
+      <div class="content-card">
+        <h2>Мини продукт</h2>
+        <p class="muted">Здесь будут 7 блоков: заголовок, описание, видео.</p>
+      </div>
+      <button class="btn back" data-back>Назад</button>
+    </section>
+
+    <!-- Консультация -->
+    <section id="consult" class="page">
+      <div class="title-plate small">
+        <img src="./assets/plaska-title.png" alt="Fitness Kama" />
+      </div>
+      <div class="content-card">
+        <h2>Консультация</h2>
+        <p class="muted">Здесь будет описание и кнопка заявки/оплаты.</p>
+      </div>
+      <button class="btn back" data-back>Назад</button>
+    </section>
+
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
