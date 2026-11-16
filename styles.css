@@ -1,10 +1,21 @@
 *{ box-sizing: border-box; }
 html,body{ height: 100%; }
+html{
+  background: #f6dfe3;
+}
 body{
   margin: 0;
   color: #2b2b2b;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: #f6dfe3 url('./assets/bg-main.png') center/cover no-repeat fixed;
+  background: transparent;
+}
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url('./assets/bg-main.png') center top / 100% auto no-repeat;
 }
 
 .app{
@@ -413,4 +424,59 @@ body.no-scroll{
   .case-card__media{
     aspect-ratio: 4 / 4.7;
   }
+}
+
+/* Мини продукт */
+.mini-article{
+  padding-bottom: 96px;
+}
+.mini-article h3{
+  margin: 18px 0 7px;
+  color: #5c2634;
+  font-size: 16px;
+  line-height: 1.28;
+}
+.mini-article p{
+  margin: 9px 0 0;
+}
+.mini-article ul{
+  margin: 8px 0 0;
+}
+.mini-article blockquote{
+  margin: 14px 0 0;
+  padding: 12px 12px;
+  border-left: 3px solid rgba(92,38,52,.55);
+  border-radius: 12px;
+  background: rgba(255,255,255,.42);
+  color: #5c2634;
+  font-weight: 650;
+  line-height: 1.4;
+}
+.mini-note{
+  color: #5c2634;
+  font-weight: 750;
+}
+.pay-pill{
+  appearance: none;
+  position: fixed;
+  left: 50%;
+  bottom: calc(12px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 60;
+  width: min(calc(100% - 32px), 528px);
+  height: 54px;
+  border: 1px solid rgba(255,255,255,.42);
+  border-radius: 999px;
+  background: rgba(92, 38, 52, .88);
+  color: #fff2f5;
+  box-shadow: 0 14px 34px rgba(0,0,0,.30);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  cursor: pointer;
+}
+.pay-pill:active{
+  transform: translateX(-50%) translateY(1px);
 }
