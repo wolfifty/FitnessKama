@@ -20,7 +20,7 @@ body{
 .page{ display: none; }
 .page.active{ display: block; }
 
-/* Главная: те же отступы между элементами, но блок центрируется по вертикали */
+/* Главная: блок центрируется, отступ после плашки = 1.5 × gap карточек */
 #home.active{
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@ body{
   display: block;
 }
 #home .menu{
-  margin-top: 22px;
+  margin-top: 24px;
   gap: 16px;
 }
 
