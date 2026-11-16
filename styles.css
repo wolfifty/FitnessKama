@@ -489,3 +489,61 @@ body.no-scroll{
   border-radius: 14px;
   box-shadow: 0 10px 24px rgba(0,0,0,.14);
 }
+
+/* Материалы (уроки) */
+.lessons-list{
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+}
+.lesson-card{
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(255,255,255,.65);
+  border-radius: 18px;
+  padding: 14px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+}
+.lesson-card h3{
+  margin: 0 0 4px;
+  color: #5c2634;
+  font-size: 16px;
+  line-height: 1.28;
+}
+.lesson-sub{
+  margin: 0 0 8px;
+  color: #43222b;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.lesson-desc{
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+.lesson-video{
+  width: 100%;
+  display: block;
+  border-radius: 14px;
+  background: #2b1118;
+  box-shadow: 0 10px 24px rgba(0,0,0,.18);
+}
+.lesson-soon{
+  display: none;
+  margin: 0;
+  padding: 16px 14px;
+  border-radius: 14px;
+  background: rgba(92,38,52,.08);
+  color: #6f4850;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 650;
+}
+.lesson-card.is-empty .lesson-video{
+  display: none;
+}
+.lesson-card.is-empty .lesson-soon{
+  display: block;
+}
