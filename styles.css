@@ -20,35 +20,18 @@ body{
 .page{ display: none; }
 .page.active{ display: block; }
 
-/* Титульная должна помещаться в один экран без огромных промежутков */
+/* Главная: без растягивания и без обрезки картинок — компактно в один экран */
 #home.active{
-  height: calc(100vh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-  height: calc(100svh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-#home .title-plate{
-  flex: 0 0 auto;
+  display: block;
 }
 #home .title-plate img{
   width: 100%;
-  height: clamp(128px, 24svh, 210px);
-  object-fit: cover;
-  object-position: center;
+  height: auto;
   display: block;
 }
 #home .menu{
-  flex: 1 1 auto;
-  min-height: 0;
   margin-top: 12px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, minmax(0, 1fr));
   gap: 12px;
-}
-#home .menu > *{
-  min-height: 0;
 }
 
 .title-plate{
@@ -83,20 +66,15 @@ body{
   cursor: pointer;
   box-shadow: 0 12px 28px rgba(0,0,0,.22);
   min-height: 0;
-  height: 100%;
+  height: auto;
 }
 .img-btn img{
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
   display: block;
 }
 .img-btn:active{ transform: translateY(1px); }
 .wide{ grid-column: 1 / -1; }
-.img-btn.wide{
-  min-height: 0;
-}
 
 .content-card{
   margin-top: 12px;
