@@ -50,22 +50,32 @@ body{
   display: block;
 }
 .title-plate.small{
+  margin-top: 48px;
   margin-bottom: 12px;
 }
 
-.topbar{
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 8px;
-}
-.back-circle{
-  width: 42px;
+.back-pill{
+  position: fixed;
+  top: calc(12px + env(safe-area-inset-top));
+  left: 12px;
+  z-index: 50;
+  width: auto;
   height: 42px;
   margin: 0;
-  padding: 0;
-  border-radius: 50%;
-  font-size: 20px;
-  line-height: 1;
+  padding: 0 14px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(92, 38, 52, .58);
+  color: #fff2f5;
+  border: 1px solid rgba(255,255,255,.38);
+  box-shadow: 0 10px 24px rgba(0,0,0,.24);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-size: 14px;
+  font-weight: 650;
 }
 
 .menu{
