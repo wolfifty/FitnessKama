@@ -79,6 +79,11 @@ body{
 }
 .img-btn:active{ transform: translateY(1px); }
 .wide{ grid-column: 1 / -1; }
+.section-cta{
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+}
 
 .content-card{
   margin-top: 12px;
@@ -87,6 +92,25 @@ body{
   border-radius: 18px;
   padding: 14px;
   backdrop-filter: blur(6px);
+}
+.content-card h3{
+  margin: 14px 0 6px;
+  font-size: 16px;
+}
+.content-card p{
+  margin: 10px 0 0;
+  line-height: 1.45;
+}
+.content-card p:first-of-type{
+  margin-top: 0;
+}
+.content-card ul{
+  margin: 8px 0 0;
+  padding-left: 18px;
+}
+.content-card li{
+  margin: 6px 0;
+  line-height: 1.35;
 }
 h2{ margin: 0 0 8px; font-size: 18px; }
 .muted{ opacity: .75; line-height: 1.35; }
