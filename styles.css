@@ -48,10 +48,11 @@ body::before{
   margin: 14px auto 0;
   max-width: 330px;
   text-align: center;
-  color: #57343f;
+  color: #ffffff;
+  text-shadow: 0 1px 10px rgba(90, 25, 45, .5), 0 0 2px rgba(90, 25, 45, .35);
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 16px;
   line-height: 1.5;
 }
