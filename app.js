@@ -65,7 +65,11 @@ function escapeHtml(value){
 }
 
 function fmt(value){
-  return escapeHtml(value).replaceAll('🩷', HEART);
+  return escapeHtml(value)
+    .replaceAll('🩷', HEART)
+    .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>');
 }
 
 function caseSrc(name){
@@ -201,6 +205,10 @@ async function renderMiniProduct(){
 
 function miniTextToHtml(text){
   const lines = String(text).split(/\r?\n/);
+  const tariffIndex = lines.findIndex(line => /ТАРИФ/i.test(line));
+  const bodyLines = tariffIndex >= 0 ? lines.slice(0, tariffIndex) : lines;
+  const tariffLines = tariffIndex >= 0 ? lines.slice(tariffIndex) : [];
+
   let html = '<h2>FITNESS KAMA 🫦🤍</h2>';
   let listOpen = false;
   const closeList = () => {
@@ -210,7 +218,7 @@ function miniTextToHtml(text){
     }
   };
 
-  for (const rawLine of lines) {
+  for (const rawLine of bodyLines) {
     const line = rawLine.trim();
     if (!line) continue;
 
@@ -234,7 +242,7 @@ function miniTextToHtml(text){
 
     if (line.startsWith('> ')) {
       html += `<blockquote>${fmt(line.slice(2))}</blockquote>`;
-    } else if (/^\d\s*ЗАНЯТИЕ/i.test(line) || /^(ПРОГРАММА|БОНУСЫ)/.test(line) || /ТАРИФ/.test(line)) {
+    } else if (/^\d\s*ЗАНЯТИЕ/i.test(line) || /^(ПРОГРАММА|БОНУСЫ)/.test(line)) {
       html += `<h3>${fmt(line)}</h3>`;
     } else if (/^(Стоимость|Свободно|Рекомендую|Все занятия|❗️)/.test(line)) {
       html += `<p class="mini-note">${fmt(line)}</p>`;
@@ -244,6 +252,50 @@ function miniTextToHtml(text){
   }
 
   closeList();
+  if (tariffLines.length) html += renderTariff(tariffLines);
+  return html;
+}
+
+function renderTariff(lines){
+  let html = '<section class="tariff-card">';
+  let listOpen = false;
+  let titleDone = false;
+  const closeList = () => {
+    if (listOpen) {
+      html += '</ul>';
+      listOpen = false;
+    }
+  };
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line) continue;
+
+    if (line.startsWith('- ')) {
+      if (!listOpen) {
+        html += '<ul class="tariff-list">';
+        listOpen = true;
+      }
+      html += `<li>${fmt(line.slice(2))}</li>`;
+      continue;
+    }
+
+    closeList();
+
+    if (!titleDone) {
+      html += `<h3 class="tariff-card__title">${fmt(line)}</h3>`;
+      titleDone = true;
+    } else if (/^Свободно/i.test(line)) {
+      html += `<p class="tariff-seats"><span class="tariff-seats__dot" aria-hidden="true"></span>${fmt(line)}</p>`;
+    } else if (/^Рекомендую/i.test(line)) {
+      html += `<p class="tariff-note">${fmt(line)}</p>`;
+    } else {
+      html += `<p class="tariff-text">${fmt(line)}</p>`;
+    }
+  }
+
+  closeList();
+  html += '</section>';
   return html;
 }
 

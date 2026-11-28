@@ -445,7 +445,7 @@ body.no-scroll{
 
 /* Мини продукт */
 .mini-article{
-  padding-bottom: 96px;
+  padding-bottom: 108px;
 }
 .mini-article h3{
   margin: 18px 0 7px;
@@ -473,6 +473,93 @@ body.no-scroll{
   color: #5c2634;
   font-weight: 750;
 }
+
+/* Тариф BASE в конце программы */
+.mini-article .tariff-card{
+  margin: 22px 0 0;
+  padding: 16px 14px 15px;
+  border-radius: 20px;
+  border: 1px solid rgba(92,38,52,.16);
+  background: linear-gradient(158deg, rgba(255,255,255,.62) 0%, rgba(255,255,255,.34) 55%, rgba(214,150,166,.22) 100%);
+  box-shadow: 0 16px 34px rgba(43,12,22,.14), inset 0 1px 0 rgba(255,255,255,.65);
+}
+.mini-article .tariff-card__title{
+  margin: 0;
+  color: #5c2634;
+  font-size: 18px;
+  line-height: 1.28;
+  font-weight: 850;
+  letter-spacing: .01em;
+}
+.mini-article .tariff-seats{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 11px 0 0;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: rgba(92,38,52,.9);
+  color: #fff2f5;
+  font-size: 14.5px;
+  font-weight: 750;
+  line-height: 1.2;
+  box-shadow: 0 8px 18px rgba(43,12,22,.20);
+}
+.tariff-seats__dot{
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #f5bcc9;
+  box-shadow: 0 0 0 3px rgba(245,188,201,.28);
+  animation: tariffPulse 2.4s ease-in-out infinite;
+}
+@keyframes tariffPulse{
+  0%, 100%{ opacity: 1; }
+  50%{ opacity: .35; }
+}
+@media (prefers-reduced-motion: reduce){
+  .tariff-seats__dot{ animation: none; }
+}
+.mini-article .tariff-note{
+  margin: 12px 0 0;
+  color: #6f4850;
+  font-size: 15.5px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.mini-article .tariff-text{
+  margin: 9px 0 0;
+  color: #43222b;
+  font-size: 16px;
+  font-weight: 550;
+  line-height: 1.45;
+}
+.mini-article .tariff-list{
+  list-style: none;
+  margin: 13px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+}
+.mini-article .tariff-list li{
+  position: relative;
+  margin: 0;
+  padding-left: 23px;
+  color: #33202a;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.mini-article .tariff-list li::before{
+  content: "♥︎";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #d894a4;
+  font-size: 14px;
+  line-height: 1.6;
+}
 .pay-pill{
   appearance: none;
   position: fixed;
@@ -482,6 +569,10 @@ body.no-scroll{
   z-index: 60;
   width: min(calc(100% - 32px), 528px);
   height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   border: 1px solid rgba(255,255,255,.42);
   border-radius: 999px;
   background: rgba(92, 38, 52, .88);
@@ -493,6 +584,14 @@ body.no-scroll{
   font-weight: 800;
   letter-spacing: .02em;
   cursor: pointer;
+}
+.pay-pill__price{
+  padding-left: 11px;
+  border-left: 1px solid rgba(255,255,255,.35);
+  font-size: 15.5px;
+  font-weight: 800;
+  letter-spacing: .01em;
+  white-space: nowrap;
 }
 .pay-pill:active{
   transform: translateX(-50%) translateY(1px);
